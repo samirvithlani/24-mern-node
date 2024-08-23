@@ -1,0 +1,11 @@
+folder: node
+
+open vs code
+
+terminal 
+
+npm init
+main --> app.js
+
+create app.js file..
+
