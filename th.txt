@@ -9,3 +9,11 @@ main --> app.js
 
 create app.js file..
 
+MERn
+m mongo
+e express : middleware framework
+r react
+n node :
+
+
+npm install nodemon -g
