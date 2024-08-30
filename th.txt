@@ -17,3 +17,14 @@ n node :
 
 
 npm install nodemon -g
+
+mongodb :
+mongoose:
+
+
+
+orm : object relational mapping
+
+model: schema <--- ----> mongo db collection
+use db name:
+db.users -->
