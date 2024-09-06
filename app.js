@@ -1,21 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-const PORT = 3000
+const PORT = 3001
 
-const userSchema = require("./src/models/UserModel")
-//userSchema === db.users
 
-app.get("/users",async(req,res)=>{
 
-    //db.users.find()
-    const users = await userSchema.find()
-    res.json({
-        message:"success",
-        data:users
-    })
+const userRoutes = require('./src/routes/UserRoutes');
+//app.use("/api",userRoutes);
+app.use("/user",userRoutes);
 
-})
 
 
 

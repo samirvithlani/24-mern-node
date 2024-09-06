@@ -28,3 +28,7 @@ orm : object relational mapping
 model: schema <--- ----> mongo db collection
 use db name:
 db.users -->
+
+
+
+app.js --> routes --> controllers --[[models]] ---> response...
