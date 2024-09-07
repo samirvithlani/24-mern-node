@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const app = express();
 const PORT = 3001
 
+app.use(express.json()); //enable json data in body part 
 
 
 const userRoutes = require('./src/routes/UserRoutes');

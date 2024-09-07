@@ -32,3 +32,12 @@ db.users -->
 
 
 app.js --> routes --> controllers --[[models]] ---> response...
+
+
+
+can send data in 4 manner in request :
+request param : localhost:3001/user/adduser/1
+request query : localhost:3001/user/adduser/?id=1
+
+request body : localhost:3001/user/adduser/  --> {id:1}
+request header : localhost:3001/user/adduser/  --> {id:1}  --> header : {auth:1234}
