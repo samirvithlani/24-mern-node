@@ -7,8 +7,10 @@ app.use(express.json()); //enable json data in body part
 
 
 const userRoutes = require('./src/routes/UserRoutes');
+const roleRoutes = require('./src/routes/RoleRoutes');
 //app.use("/api",userRoutes);
 app.use("/user",userRoutes);
+app.use("/role",roleRoutes);
 
 
 

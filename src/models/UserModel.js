@@ -2,22 +2,42 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
-  //post...
-  //fileds:
-  name: {
-    type: String,
+const userSchema = new Schema(
+  {
+    //post...
+    //fileds:
+    //rid
+    role:{
+      type:Schema.Types.ObjectId,
+      ref:"Role"
+    },
+    //3
+    name: {
+      type: String,
+    },
+    email: {
+      type: String,
+    },
+    age: {
+      type: Number,
+    },
+    status: {
+      type: Boolean,
+    },
+    hobbies: [
+      {
+        type: String,
+      },
+    ],
+    bloodGroup: {
+      type: String,
+      enum: ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"],
+    },
   },
-  email: {
-    type: String,
-  },
-  age: {
-    type: Number,
-  },
-  status: {
-    type: Boolean,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 // mongoose.model("users",userSchema);
 // module.exports = userSchema;
 //userSchema == db.users

@@ -1,7 +1,7 @@
 const userSchema = require("../models/UserModel");
 
 const getAllUsers = async (req, res) => {
-  const users = await userSchema.find();
+  const users = await userSchema.find().populate("role");
   if (users) {
     res.status(200).json({
       message: "data fetch Successfully !!",
@@ -39,12 +39,19 @@ const addUser = async (req, res) => {
 
   console.log("request body...", req.body);
   //userSchema.insert(req.body)
-  const savedUser = await userSchema.create(req.body);
-  //res.send("Add User API")
-  res.status(201).json({
-    message: "User Added Successfully !!",
-    data: savedUser,
-  });
+  try {
+    const savedUser = await userSchema.create(req.body);
+    //res.send("Add User API")
+    res.status(201).json({
+      message: "User Added Successfully !!",
+      data: savedUser,
+    });
+  } catch (err) {
+    res.status(400).json({
+      message: "User Not Added !!",
+      error:err.message
+    });
+  }
 };
 
 const deleteUser = async (req, res) => {
@@ -75,19 +82,20 @@ const updateUser = async (req, res) => {
   const dataToUpdate = req.body;
   //console.log("data to update...", dataToUpdate);
 
-  const updatedUser = await userSchema.findByIdAndUpdate(id, dataToUpdate,{new:true});
-  if(updatedUser || updatedUser!=null){
+  const updatedUser = await userSchema.findByIdAndUpdate(id, dataToUpdate, {
+    new: true,
+  });
+  if (updatedUser || updatedUser != null) {
     res.status(200).json({
       message: "User Updated Successfully !!",
       data: updatedUser,
     });
+  } else {
+    res.status(404).json({
+      message: "User Not Found !!",
+      data: {},
+    });
   }
-    else{
-      res.status(404).json({
-        message: "User Not Found !!",
-        data: {},
-      });
-    }
   //console.log("updated user...", updatedUser);
   // res.status(200).json({
   //   message: "User Updated Successfully !!",
@@ -96,9 +104,8 @@ const updateUser = async (req, res) => {
 };
 
 const deleteByAge = async (req, res) => {
-
   const age = req.query.age;
-  const deletedUsers = await userSchema.deleteMany({age:{$gte:age}});
+  const deletedUsers = await userSchema.deleteMany({ age: { $gte: age } });
   console.log("deleted users...", deletedUsers);
   if (deletedUsers.deletedCount > 0) {
     res.status(200).json({
@@ -111,11 +118,7 @@ const deleteByAge = async (req, res) => {
       data: {},
     });
   }
-
-
-
-}
-
+};
 
 module.exports = {
   getAllUsers,
@@ -123,5 +126,5 @@ module.exports = {
   addUser,
   deleteUser,
   updateUser,
-  deleteByAge
+  deleteByAge,
 };
