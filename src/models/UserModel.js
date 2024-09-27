@@ -24,6 +24,10 @@ const userSchema = new Schema(
     status: {
       type: Boolean,
     },
+    password:{
+      type:String
+    },
+    
     hobbies: [
       {
         type: String,

@@ -1,4 +1,5 @@
 const userSchema = require("../models/UserModel");
+const encrypt = require("../util/Encrypt");
 
 const getAllUsers = async (req, res) => {
   const users = await userSchema.find().populate("role");
@@ -39,6 +40,12 @@ const addUser = async (req, res) => {
 
   console.log("request body...", req.body);
   //userSchema.insert(req.body)
+
+
+
+  req.body.password = await encrypt.encryptPassword(req.body?.password);
+
+
   try {
     const savedUser = await userSchema.create(req.body);
     //res.send("Add User API")
@@ -120,6 +127,39 @@ const deleteByAge = async (req, res) => {
   }
 };
 
+
+const loginUser = async(req,res)=>{
+
+  const email = req.body.email; //janki@gmail.com
+  const password = req.body.password; //janki
+
+  const userFromEmail = await userSchema.findOne({email:email}); //find....
+  if(userFromEmail !=null){
+  
+    const isMatch = await encrypt.comparePassword(password,userFromEmail.password);
+    console.log("isMatch...",isMatch);
+    if(isMatch){
+      res.json({
+        message:"login successfully",
+        data:userFromEmail
+      })
+    }
+    else{
+      res.json({
+        message:"Invalid Credential"
+      })
+    }
+  }
+  else{
+    res.json({
+      message:"user not found"
+    })
+  }
+  
+
+  //console.log("user from email...",userFromEmail);
+}
+
 module.exports = {
   getAllUsers,
   getUserById,
@@ -127,4 +167,5 @@ module.exports = {
   deleteUser,
   updateUser,
   deleteByAge,
+  loginUser
 };

@@ -8,8 +8,10 @@ const authMiddleware = require('../middleware/AuthMiddleware');
 router.get("/users",authMiddleware.authMiddleware,userController.getAllUsers)
 router.get("/user/:id",userController.getUserById)
 //localhost:3001/user/adduser
-router.post("/adduser",roleValidatorMiddleware.roleValidator,userController.addUser)
+//router.post("/adduser",roleValidatorMiddleware.roleValidator,userController.addUser)
+router.post("/adduser",userController.addUser)
 router.delete("/deleteuser/:id",userController.deleteUser)
 router.put("/updateuser/:id",userController.updateUser)
 router.delete("/deletebyage",userController.deleteByAge)
+router.post("/login",userController.loginUser)
 module.exports = router;

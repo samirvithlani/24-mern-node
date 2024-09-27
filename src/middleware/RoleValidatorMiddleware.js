@@ -1,7 +1,9 @@
 const roleSchema = require("../models/RoleModel");
 
 const roleValidator = async (req, res, next) => {
-  const role = req.body.role;
+
+  const role = req.body.role; //"091981i01i19y1vhjds"
+
   if (role == undefined || role == "") {
     res.status(400).json({
       message: "Please provide role !!",
