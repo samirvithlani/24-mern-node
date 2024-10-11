@@ -1,9 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const app = express();
 const PORT = 3001
 
 app.use(express.json()); //enable json data in body part 
+app.use(cors());
 
 
 

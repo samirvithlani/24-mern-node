@@ -5,7 +5,7 @@ const roleValidatorMiddleware = require('../middleware/RoleValidatorMiddleware')
 const authMiddleware = require('../middleware/AuthMiddleware');
 
 //router.get("/users",ayncc(_))
-router.get("/users",authMiddleware.authMiddleware,userController.getAllUsers)
+router.get("/users",userController.getAllUsers)
 router.get("/user/:id",userController.getUserById)
 //localhost:3001/user/adduser
 //router.post("/adduser",roleValidatorMiddleware.roleValidator,userController.addUser)
