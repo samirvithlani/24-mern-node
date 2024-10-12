@@ -43,3 +43,14 @@ request body : localhost:3001/user/adduser/  --> {id:1}
 request header : localhost:3001/user/adduser/  --> {id:1}  --> header : {auth:1234}
 
 //post request --> middleware :
+
+
+
+--->
+database :
+server   : "./uploads"
+buket    :s3, gcp, azure,google drive,clooudinary
+
+product : 
+product image : -->cloundary : url ===> db
+//store data in db

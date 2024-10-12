@@ -12,10 +12,12 @@ app.use(cors());
 const userRoutes = require('./src/routes/UserRoutes');
 const roleRoutes = require('./src/routes/RoleRoutes');
 const productRoutes = require('./src/routes/ProductRoutes');
+const uploadRoutes = require('./src/routes/UploadRoutes');
 //app.use("/api",userRoutes);
 app.use("/user",userRoutes);
 app.use("/role",roleRoutes);
 app.use("/product",productRoutes);
+app.use("/upload",uploadRoutes);
 
 
 
