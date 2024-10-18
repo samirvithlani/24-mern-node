@@ -1,5 +1,6 @@
 
 const multer = require('multer');
+const cloudanryUpload = require('../util/CloundanryUpload');
 //storage...
 
 const storage = multer.diskStorage({
@@ -27,10 +28,10 @@ const upload = multer({
 //myImage : name of the file field in the form
 
 
-const upoloadFile = (req,res)=>{
+const upoloadFile = async(req,res)=>{
 
 
-        upload(req,res,(err)=>{
+        upload(req,res,async(err)=>{
             //console.log(req.body);
             if(err){
                 res.json({
@@ -38,9 +39,15 @@ const upoloadFile = (req,res)=>{
                 })
             }
             else{
+
+                const cloudanry_response = await cloudanryUpload.uploadFileToCloudanry(req.file.path);
+                console.log(cloudanry_response);
+
+                //db logic...
                 res.json({
                     message:"file uploaded successfully",
-                    file:req.file
+                    file:req.file,
+                    secure_url:cloudanry_response.secure_url
                 })
             }
         })
